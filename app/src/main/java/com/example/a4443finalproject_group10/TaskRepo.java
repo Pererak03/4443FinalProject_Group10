@@ -26,4 +26,15 @@ public class TaskRepo {
         Task task = new Task(description, userId);
         getDao(context).insert(task);
     }
+
+    // Update an existing task
+    public static void updateTask(Context context, Task task) {
+        getDao(context).update(task);
+    }
+
+    // Delete a task
+    public static void deleteTask(Context context, Task task) {
+        getDao(context).delete(task);
+    }
+
 }

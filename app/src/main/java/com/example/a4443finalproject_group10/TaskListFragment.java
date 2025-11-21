@@ -40,8 +40,8 @@ public class TaskListFragment extends Fragment {
         taskViewModel = new ViewModelProvider(requireActivity())
                 .get(TaskViewModel.class);
 
-        // Initial empty adapter
-        adapter = new TaskListAdapter(new ArrayList<>());
+        // Pass ViewModel into adapter
+        adapter = new TaskListAdapter(new ArrayList<>(), taskViewModel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
