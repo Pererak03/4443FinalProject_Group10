@@ -7,12 +7,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.List;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
 
-    private final List<Task> tasks;
+    private List<Task> tasks;
 
     public TaskListAdapter(List<Task> tasks) {
         this.tasks = tasks;
@@ -25,6 +24,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             super(itemView);
             taskText = itemView.findViewById(R.id.taskText);
         }
+    }
+
+    // Allow updating the list from ViewModel
+    public void setTasks(List<Task> newTasks) {
+        this.tasks = newTasks;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -49,6 +54,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
     @Override
     public int getItemCount() {
-        return tasks.size();
+        return tasks != null ? tasks.size() : 0;
     }
 }
