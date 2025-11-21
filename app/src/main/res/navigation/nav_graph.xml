@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/taskListFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.a4443finalproject_group10.LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.a4443finalproject_group10.SignUpFragment"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/taskListFragment"
@@ -12,5 +35,7 @@
         android:id="@+id/addTaskFragment"
         android:name="com.example.a4443finalproject_group10.AddTaskFragment"
         android:label="Add Task" />
+
+
 
 </navigation>
