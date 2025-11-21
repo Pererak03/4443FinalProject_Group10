@@ -34,7 +34,7 @@ public class TaskListFragment extends Fragment {
         addTaskFab = view.findViewById(R.id.addTaskFab);
 
         // Create the RecyclerView Adapter and give it the list of tasks from the repository
-        TaskListAdapter adapter = new TaskListAdapter(TaskRepo.getTasks());
+        TaskListAdapter adapter = new TaskListAdapter(TaskRepo.getTasks(requireContext()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
 
