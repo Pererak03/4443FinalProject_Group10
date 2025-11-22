@@ -9,7 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-// ViewModel for task data
+// ViewModel for task data (per logged-in user)
 public class TaskViewModel extends AndroidViewModel {
 
     private final MutableLiveData<List<Task>> tasks = new MutableLiveData<>();
@@ -24,15 +24,35 @@ public class TaskViewModel extends AndroidViewModel {
         return tasks;
     }
 
-    // Load tasks from repository
+    // Load tasks for current user
     public void loadTasks() {
         List<Task> list = TaskRepo.getTasks(getApplication());
         tasks.setValue(list);
     }
 
-    // Add a new task and refresh list
+    // Add new task
     public void addTask(String description) {
         TaskRepo.addTask(getApplication(), description);
+        loadTasks();
+    }
+
+    // Toggle completion and persist
+    public void toggleCompleted(Task task) {
+        task.toggleCompleted();
+        TaskRepo.updateTask(getApplication(), task);
+        loadTasks();
+    }
+
+    // Update description and persist
+    public void updateTask(Task task, String newDescription) {
+        task.description = newDescription;
+        TaskRepo.updateTask(getApplication(), task);
+        loadTasks();
+    }
+
+    // Delete task
+    public void deleteTask(Task task) {
+        TaskRepo.deleteTask(getApplication(), task);
         loadTasks();
     }
 }
