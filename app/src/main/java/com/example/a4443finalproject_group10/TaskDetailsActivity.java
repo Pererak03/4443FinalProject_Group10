@@ -24,11 +24,14 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         TextView taskName = findViewById(R.id.taskName);
         TextView taskDetails = findViewById(R.id.taskDetails);
+        Button btnReturn = findViewById(R.id.returnButton);
 
         String createdTaskName = getIntent().getStringExtra(EXTRA_TASK_NAME);
-        String createdTaskDetails = getIntent().getStringExtra(EXTRA_TASK_NAME);
+        String createdTaskDetails = getIntent().getStringExtra(EXTRA_TASK_DETAILS);
 
         taskName.setText(createdTaskName != null ? createdTaskName : "No name");
         taskDetails.setText(createdTaskDetails != null ? createdTaskDetails : "No details");
+
+        btnReturn.setOnClickListener(v -> finish());
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="130dp"
+    android:padding="120dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,15 +13,23 @@
         android:layout_height="wrap_content"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:gravity="center" />
+        android:gravity="center"
+        android:layout_marginTop="60dp"/>
 
     <TextView
         android:id="@+id/taskDetails"
+        android:text="Task Details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Task Details"
         android:textSize="20sp"
         android:gravity="center"
         android:layout_marginTop="64dp"/>
+
+    <Button
+        android:id="@+id/returnButton"
+        android:text="Return Button"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

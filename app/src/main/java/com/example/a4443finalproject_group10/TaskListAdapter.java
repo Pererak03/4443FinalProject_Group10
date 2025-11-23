@@ -27,6 +27,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView taskText;
+        TextView taskDetails;
         LinearLayout actionRow;
         ImageButton btnComplete;
         ImageButton btnEdit;
@@ -35,6 +36,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         public TaskViewHolder(View itemView) {
             super(itemView);
             taskText = itemView.findViewById(R.id.taskText);
+            taskDetails = itemView.findViewById(R.id.taskDescription);
             actionRow = itemView.findViewById(R.id.actionRow);
             btnComplete = itemView.findViewById(R.id.btnComplete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
@@ -66,6 +68,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         Task task = tasks.get(position);
         holder.taskText.setText(task.getDescription());
+        holder.taskDetails.setText(task.getDetails());
         holder.taskText.setAlpha(task.isCompleted() ? 0.3f : 1f);
 
         InputMode mode = SessionManager.getInputMode();
@@ -120,27 +123,27 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     private void showEditDialog(View view, Task task) {
-        //LinearLayout layout = new LinearLayout(view.getContext());
-        //layout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout layout = new LinearLayout(view.getContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
 
         EditText input = new EditText(view.getContext());
         input.setText(task.getDescription());
         input.setSelection(input.getText().length());
-        //layout.addView(input);
+        layout.addView(input);
 
-        //EditText inputDetails = new EditText(view.getContext());
-        //inputDetails.setText(task.getDetails());
-        //inputDetails.setSelection(inputDetails.getText().length());
-        //layout.addView(inputDetails);
+        EditText inputDetails = new EditText(view.getContext());
+        inputDetails.setText(task.getDetails());
+        inputDetails.setSelection(inputDetails.getText().length());
+        layout.addView(inputDetails);
 
         new AlertDialog.Builder(view.getContext())
                 .setTitle("Edit task")
-                .setView(input)
+                .setView(layout)
                 .setPositiveButton("Save", (dialog, which) -> {
                     String newText = input.getText().toString().trim();
-                    //String newDetails = inputDetails.getText().toString().trim();
+                    String newDetails = inputDetails.getText().toString().trim();
                     if (!newText.isEmpty()) {
-                        viewModel.updateTask(task, newText);
+                        viewModel.updateTask(task, newText, newDetails);
                     }
                 })
                 .setNegativeButton("Cancel", null)

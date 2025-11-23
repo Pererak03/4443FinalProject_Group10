@@ -27,7 +27,7 @@ public class Task {
     public String details;
 
     // constructor used when creating a new task
-    public Task(String description, int userId) {
+    public Task(String description, String details, int userId) {
         this.description = description;
         this.details = details;
         this.userId = userId;

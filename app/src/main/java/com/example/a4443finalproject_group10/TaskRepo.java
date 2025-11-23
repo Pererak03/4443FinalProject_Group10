@@ -20,10 +20,10 @@ public class TaskRepo {
     }
 
     // Add a new task for the logged-in user
-    public static void addTask(Context context, String description) {
+    public static void addTask(Context context, String description, String details) {
         int userId = SessionManager.getCurrentUserId();
         if (userId == -1) return;
-        Task task = new Task(description, userId);
+        Task task = new Task(description, details, userId);
         getDao(context).insert(task);
     }
 

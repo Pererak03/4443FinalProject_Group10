@@ -31,8 +31,8 @@ public class TaskViewModel extends AndroidViewModel {
     }
 
     // Add new task
-    public void addTask(String description) {
-        TaskRepo.addTask(getApplication(), description);
+    public void addTask(String description, String detail) {
+        TaskRepo.addTask(getApplication(), description, detail);
         loadTasks();
     }
 
@@ -44,9 +44,9 @@ public class TaskViewModel extends AndroidViewModel {
     }
 
     // Update description and persist
-    public void updateTask(Task task, String newDescription) {
+    public void updateTask(Task task, String newDescription, String newDetails) {
         task.description = newDescription;
-        //task.details = newDetails;
+        task.details = newDetails;
         TaskRepo.updateTask(getApplication(), task);
         loadTasks();
     }
