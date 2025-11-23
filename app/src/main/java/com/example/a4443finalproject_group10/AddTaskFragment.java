@@ -28,11 +28,13 @@ public class AddTaskFragment extends Fragment {
 
         // Input field and save button
         EditText input = view.findViewById(R.id.taskInput);
+        //EditText description = view.findViewById(R.id.taskDescription);
         Button save = view.findViewById(R.id.saveButton);
 
         // Save new task through ViewModel and return to task list
         save.setOnClickListener(v -> {
             String text = input.getText().toString().trim();
+            //String details = description.getText().toString().trim();
             if (!text.isEmpty()) {
                 taskViewModel.addTask(text);
             }

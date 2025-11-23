@@ -1,5 +1,6 @@
 package com.example.a4443finalproject_group10;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,7 +74,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             // Buttons visible, no gesture behavior on item root
             holder.actionRow.setVisibility(View.VISIBLE);
 
-            holder.itemView.setOnClickListener(null);
+            holder.itemView.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), TaskDetailsActivity.class);
+                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_NAME, task.getDescription());
+                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_DETAILS, task.getDetails());
+                v.getContext().startActivity(intent);
+            });
+
             holder.itemView.setOnLongClickListener(null);
 
             holder.btnComplete.setOnClickListener(v -> viewModel.toggleCompleted(task));
@@ -113,15 +120,25 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     private void showEditDialog(View view, Task task) {
+        //LinearLayout layout = new LinearLayout(view.getContext());
+        //layout.setOrientation(LinearLayout.VERTICAL);
+
         EditText input = new EditText(view.getContext());
         input.setText(task.getDescription());
         input.setSelection(input.getText().length());
+        //layout.addView(input);
+
+        //EditText inputDetails = new EditText(view.getContext());
+        //inputDetails.setText(task.getDetails());
+        //inputDetails.setSelection(inputDetails.getText().length());
+        //layout.addView(inputDetails);
 
         new AlertDialog.Builder(view.getContext())
                 .setTitle("Edit task")
                 .setView(input)
                 .setPositiveButton("Save", (dialog, which) -> {
                     String newText = input.getText().toString().trim();
+                    //String newDetails = inputDetails.getText().toString().trim();
                     if (!newText.isEmpty()) {
                         viewModel.updateTask(task, newText);
                     }

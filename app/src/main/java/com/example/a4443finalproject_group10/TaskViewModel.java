@@ -46,6 +46,7 @@ public class TaskViewModel extends AndroidViewModel {
     // Update description and persist
     public void updateTask(Task task, String newDescription) {
         task.description = newDescription;
+        //task.details = newDetails;
         TaskRepo.updateTask(getApplication(), task);
         loadTasks();
     }

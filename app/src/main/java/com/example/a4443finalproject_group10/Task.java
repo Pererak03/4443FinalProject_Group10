@@ -24,16 +24,19 @@ public class Task {
     public String description;
     public boolean completed;
     public int userId;
+    public String details;
 
     // constructor used when creating a new task
     public Task(String description, int userId) {
         this.description = description;
+        this.details = details;
         this.userId = userId;
         this.completed = false;
     }
 
     // optional getters
     public String getDescription() { return description; }
+    public String getDetails() { return details; }
     public boolean isCompleted()    { return completed; }
 
     public void toggleCompleted() {
