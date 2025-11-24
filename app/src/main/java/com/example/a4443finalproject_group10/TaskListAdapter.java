@@ -32,6 +32,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         ImageButton btnComplete;
         ImageButton btnEdit;
         ImageButton btnDelete;
+        ImageButton btnDetails;
 
         public TaskViewHolder(View itemView) {
             super(itemView);
@@ -41,6 +42,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             btnComplete = itemView.findViewById(R.id.btnComplete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnDetails = itemView.findViewById(R.id.btnDetails);
         }
     }
 
@@ -77,12 +79,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             // Buttons visible, no gesture behavior on item root
             holder.actionRow.setVisibility(View.VISIBLE);
 
-            holder.itemView.setOnClickListener(v -> {
-                Intent intent = new Intent(v.getContext(), TaskDetailsActivity.class);
-                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_NAME, task.getDescription());
-                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_DETAILS, task.getDetails());
-                v.getContext().startActivity(intent);
-            });
+            holder.itemView.setOnClickListener(null);
 
             holder.itemView.setOnLongClickListener(null);
 
@@ -91,6 +88,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.btnEdit.setOnClickListener(v -> showEditDialog(v, task));
 
             holder.btnDelete.setOnClickListener(v -> showDeleteConfirmDialog(v, task));
+
+            holder.btnDetails.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), TaskDetailsActivity.class);
+                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_NAME, task.getDescription());
+                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_DETAILS, task.getDetails());
+                v.getContext().startActivity(intent);
+            });
 
         } else { // GESTURE mode
             // Hide buttons, use tap / long-press / swipe

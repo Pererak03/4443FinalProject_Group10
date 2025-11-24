@@ -12,10 +12,11 @@
         android:layout_height="wrap_content"
         android:text="Sample task"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/actionRow"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/taskDescription"
@@ -46,6 +47,14 @@
             android:contentDescription="Complete"
             android:background="@android:color/transparent"
             android:src="@android:drawable/checkbox_on_background" />
+
+        <ImageButton
+            android:id="@+id/btnDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Details"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_info_details" />
 
         <ImageButton
             android:id="@+id/btnEdit"
