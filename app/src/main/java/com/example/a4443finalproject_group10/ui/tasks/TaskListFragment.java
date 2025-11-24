@@ -1,6 +1,7 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.tasks;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -18,6 +19,10 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.a4443finalproject_group10.util.InputMode;
+import com.example.a4443finalproject_group10.R;
+import com.example.a4443finalproject_group10.util.SessionManager;
+import com.example.a4443finalproject_group10.data.task.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -59,7 +64,7 @@ public class TaskListFragment extends Fragment {
 
         // Swipe helper (used in gesture mode, with confirmation)
         swipeHelper = new ItemTouchHelper(
-                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
                     @Override
                     public boolean onMove(@NonNull RecyclerView recyclerView,
                                           @NonNull RecyclerView.ViewHolder viewHolder,
@@ -76,16 +81,25 @@ public class TaskListFragment extends Fragment {
                             return;
                         }
 
-                        new AlertDialog.Builder(requireContext())
-                                .setTitle("Delete task")
-                                .setMessage("Are you sure you want to delete this task?")
-                                .setPositiveButton("Delete", (dialog, which) ->
-                                        taskViewModel.deleteTask(task))
-                                .setNegativeButton("Cancel", (dialog, which) ->
-                                        adapter.notifyItemChanged(position))
-                                .setOnCancelListener(d ->
-                                        adapter.notifyItemChanged(position))
-                                .show();
+                        if (direction == ItemTouchHelper.LEFT) {
+                            new AlertDialog.Builder(requireContext())
+                                    .setTitle("Delete task")
+                                    .setMessage("Are you sure you want to delete this task?")
+                                    .setPositiveButton("Delete", (dialog, which) ->
+                                            taskViewModel.deleteTask(task))
+                                    .setNegativeButton("Cancel", (dialog, which) ->
+                                            adapter.notifyItemChanged(position))
+                                    .setOnCancelListener(d ->
+                                            adapter.notifyItemChanged(position))
+                                    .show();
+                        }
+                        else if (direction == ItemTouchHelper.RIGHT) {
+                            Intent intent = new Intent(requireContext(), TaskDetailsActivity.class);
+                            intent.putExtra(TaskDetailsActivity.EXTRA_TASK_NAME, task.getDescription());
+                            intent.putExtra(TaskDetailsActivity.EXTRA_TASK_DETAILS, task.getDetails());
+                            startActivity(intent);
+                            adapter.notifyItemChanged(position);
+                        }
                     }
                 });
 

@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.data.db;
 
 import android.content.Context;
 
@@ -6,8 +6,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.a4443finalproject_group10.data.task.Task;
+import com.example.a4443finalproject_group10.data.task.TaskDao;
+import com.example.a4443finalproject_group10.data.user.User;
+import com.example.a4443finalproject_group10.data.user.UserDao;
+
 // Main Room database holding User and Task tables
-@Database(entities = {User.class, Task.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Task.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;

@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.data.task;
 
 import androidx.room.Dao;
 import androidx.room.Insert;

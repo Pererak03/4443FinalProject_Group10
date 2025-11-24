@@ -1,5 +1,6 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.tasks;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.a4443finalproject_group10.util.InputMode;
+import com.example.a4443finalproject_group10.R;
+import com.example.a4443finalproject_group10.util.SessionManager;
+import com.example.a4443finalproject_group10.data.task.Task;
 
 import java.util.List;
 
@@ -26,18 +32,22 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView taskText;
+        TextView taskDetails;
         LinearLayout actionRow;
         ImageButton btnComplete;
         ImageButton btnEdit;
         ImageButton btnDelete;
+        ImageButton btnDetails;
 
         public TaskViewHolder(View itemView) {
             super(itemView);
             taskText = itemView.findViewById(R.id.taskText);
+            taskDetails = itemView.findViewById(R.id.taskDescription);
             actionRow = itemView.findViewById(R.id.actionRow);
             btnComplete = itemView.findViewById(R.id.btnComplete);
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            btnDetails = itemView.findViewById(R.id.btnDetails);
         }
     }
 
@@ -65,6 +75,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         Task task = tasks.get(position);
         holder.taskText.setText(task.getDescription());
+        holder.taskDetails.setText(task.getDetails());
         holder.taskText.setAlpha(task.isCompleted() ? 0.3f : 1f);
 
         InputMode mode = SessionManager.getInputMode();
@@ -74,6 +85,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.actionRow.setVisibility(View.VISIBLE);
 
             holder.itemView.setOnClickListener(null);
+
             holder.itemView.setOnLongClickListener(null);
 
             holder.btnComplete.setOnClickListener(v -> viewModel.toggleCompleted(task));
@@ -81,6 +93,13 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             holder.btnEdit.setOnClickListener(v -> showEditDialog(v, task));
 
             holder.btnDelete.setOnClickListener(v -> showDeleteConfirmDialog(v, task));
+
+            holder.btnDetails.setOnClickListener(v -> {
+                Intent intent = new Intent(v.getContext(), TaskDetailsActivity.class);
+                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_NAME, task.getDescription());
+                intent.putExtra(TaskDetailsActivity.EXTRA_TASK_DETAILS, task.getDetails());
+                v.getContext().startActivity(intent);
+            });
 
         } else { // GESTURE mode
             // Hide buttons, use tap / long-press / swipe
@@ -113,17 +132,27 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     private void showEditDialog(View view, Task task) {
+        LinearLayout layout = new LinearLayout(view.getContext());
+        layout.setOrientation(LinearLayout.VERTICAL);
+
         EditText input = new EditText(view.getContext());
         input.setText(task.getDescription());
         input.setSelection(input.getText().length());
+        layout.addView(input);
+
+        EditText inputDetails = new EditText(view.getContext());
+        inputDetails.setText(task.getDetails());
+        inputDetails.setSelection(inputDetails.getText().length());
+        layout.addView(inputDetails);
 
         new AlertDialog.Builder(view.getContext())
                 .setTitle("Edit task")
-                .setView(input)
+                .setView(layout)
                 .setPositiveButton("Save", (dialog, which) -> {
                     String newText = input.getText().toString().trim();
+                    String newDetails = inputDetails.getText().toString().trim();
                     if (!newText.isEmpty()) {
-                        viewModel.updateTask(task, newText);
+                        viewModel.updateTask(task, newText, newDetails);
                     }
                 })
                 .setNegativeButton("Cancel", null)

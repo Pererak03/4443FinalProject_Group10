@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.tasks;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.a4443finalproject_group10.R;
 
 public class AddTaskFragment extends Fragment {
 
@@ -28,13 +30,15 @@ public class AddTaskFragment extends Fragment {
 
         // Input field and save button
         EditText input = view.findViewById(R.id.taskInput);
+        EditText description = view.findViewById(R.id.taskDescription);
         Button save = view.findViewById(R.id.saveButton);
 
         // Save new task through ViewModel and return to task list
         save.setOnClickListener(v -> {
             String text = input.getText().toString().trim();
+            String details = description.getText().toString().trim();
             if (!text.isEmpty()) {
-                taskViewModel.addTask(text);
+                taskViewModel.addTask(text, details);
             }
             NavHostFragment.findNavController(this).popBackStack();
         });

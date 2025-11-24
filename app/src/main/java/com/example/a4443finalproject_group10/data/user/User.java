@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.data.user;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

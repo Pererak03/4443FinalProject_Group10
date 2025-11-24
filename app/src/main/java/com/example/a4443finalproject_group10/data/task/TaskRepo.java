@@ -1,6 +1,9 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.data.task;
 
 import android.content.Context;
+
+import com.example.a4443finalproject_group10.util.SessionManager;
+import com.example.a4443finalproject_group10.data.db.AppDatabase;
 
 import java.util.List;
 
@@ -20,10 +23,10 @@ public class TaskRepo {
     }
 
     // Add a new task for the logged-in user
-    public static void addTask(Context context, String description) {
+    public static void addTask(Context context, String description, String details) {
         int userId = SessionManager.getCurrentUserId();
         if (userId == -1) return;
-        Task task = new Task(description, userId);
+        Task task = new Task(description, details, userId);
         getDao(context).insert(task);
     }
 

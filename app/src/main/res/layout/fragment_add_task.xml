@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <EditText
+        android:id="@+id/taskDescription"
+        android:hint="Enter task description... (optional)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/saveButton"
         android:text="Save Task"
