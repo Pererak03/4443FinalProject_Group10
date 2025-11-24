@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.tasks;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -11,6 +11,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.a4443finalproject_group10.util.InputMode;
+import com.example.a4443finalproject_group10.R;
+import com.example.a4443finalproject_group10.util.SessionManager;
+import com.example.a4443finalproject_group10.data.task.Task;
 
 import java.util.List;
 

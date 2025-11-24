@@ -1,9 +1,11 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.data.task;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
+import com.example.a4443finalproject_group10.data.user.User;
 
 @Entity(
         tableName = "tasks",

@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.util;
 
 // Tracks the currently logged-in user for the session
 public class SessionManager {

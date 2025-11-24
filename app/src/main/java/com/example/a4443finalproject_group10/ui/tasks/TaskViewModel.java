@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.tasks;
 
 import android.app.Application;
 
@@ -6,6 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+
+import com.example.a4443finalproject_group10.data.task.Task;
+import com.example.a4443finalproject_group10.data.task.TaskRepo;
 
 import java.util.List;
 

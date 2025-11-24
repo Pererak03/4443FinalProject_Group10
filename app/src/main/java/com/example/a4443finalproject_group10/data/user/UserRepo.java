@@ -1,6 +1,8 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.data.user;
 
 import android.content.Context;
+
+import com.example.a4443finalproject_group10.data.db.AppDatabase;
 
 // Repository for user account operations
 public class UserRepo {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.a4443finalproject_group10.LoginFragment"
+        android:name="com.example.a4443finalproject_group10.ui.auth.LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.a4443finalproject_group10.SignUpFragment"
+        android:name="com.example.a4443finalproject_group10.ui.auth.SignUpFragment"
         tools:layout="@layout/fragment_signup">
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
@@ -28,12 +28,12 @@
 
     <fragment
         android:id="@+id/taskListFragment"
-        android:name="com.example.a4443finalproject_group10.TaskListFragment"
+        android:name="com.example.a4443finalproject_group10.ui.tasks.TaskListFragment"
         android:label="Task List" />
 
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.example.a4443finalproject_group10.AddTaskFragment"
+        android:name="com.example.a4443finalproject_group10.ui.tasks.AddTaskFragment"
         android:label="Add Task" />
 
 

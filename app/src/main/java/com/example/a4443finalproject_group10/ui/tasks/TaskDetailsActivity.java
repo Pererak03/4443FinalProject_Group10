@@ -1,17 +1,12 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.tasks;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.a4443finalproject_group10.R;
 
 public class TaskDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_TASK_NAME = "task_name";

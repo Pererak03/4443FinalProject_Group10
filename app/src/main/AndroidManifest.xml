@@ -9,7 +9,7 @@
 
 
         <activity
-            android:name="MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="true">
 
             <intent-filter>
@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".TaskDetailsActivity" />
+        <activity android:name=".ui.tasks.TaskDetailsActivity" />
 
     </application>
 

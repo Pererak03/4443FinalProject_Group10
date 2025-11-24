@@ -1,4 +1,4 @@
-package com.example.a4443finalproject_group10;
+package com.example.a4443finalproject_group10.ui.auth;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.a4443finalproject_group10.R;
+import com.example.a4443finalproject_group10.util.SessionManager;
+import com.example.a4443finalproject_group10.data.user.User;
+import com.example.a4443finalproject_group10.data.user.UserRepo;
 
 public class SignUpFragment extends Fragment {
 
